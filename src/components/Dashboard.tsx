@@ -10,8 +10,12 @@ import {
   BarChart,
   Bar,
 } from 'recharts'
-const API_URL = import.meta.env.VITE_API_URL as string
 
+/* ======================================================
+   CONFIG
+====================================================== */
+
+const API_URL = import.meta.env.VITE_API_URL as string
 
 /* ======================================================
    TYPES
@@ -164,8 +168,8 @@ export default function Dashboard() {
         <MetricCard title="Ticket Promedio" value={formatCurrency(kpis.averageTicket)} color="purple" />
       </div>
 
-      {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      {/* Charts Row 1 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
         <Card title="Ventas por mes">
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={salesByMonth}>
@@ -187,8 +191,20 @@ export default function Dashboard() {
             </BarChart>
           </ResponsiveContainer>
         </Card>
+
+        <Card title="Ventas por categoría">
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={salesByCategory}>
+              <XAxis dataKey="Category" />
+              <YAxis />
+              <Tooltip />
+              <Bar dataKey="sales" fill="#3b82f6" />
+            </BarChart>
+          </ResponsiveContainer>
+        </Card>
       </div>
 
+      {/* Charts Row 2 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <Card title="Ventas por año">
           <ResponsiveContainer width="100%" height={300}>
@@ -261,4 +277,3 @@ function Card({
     </div>
   )
 }
-
