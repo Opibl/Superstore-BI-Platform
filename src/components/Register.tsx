@@ -6,7 +6,6 @@ export default function Register() {
   const navigate = useNavigate()
   const { t, lang, setLang } = useTranslate()
 
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -27,7 +26,6 @@ export default function Register() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name,
             email,
             password,
           }),
@@ -42,7 +40,7 @@ export default function Register() {
 
       // ⏳ Redirigir al login
       setTimeout(() => {
-        navigate('/')
+        navigate('/login')
       }, 1500)
     } catch (err) {
       setError(t('register.error'))
@@ -86,15 +84,6 @@ export default function Register() {
         )}
 
         <input
-          type="text"
-          placeholder={t('register.name')}
-          className="w-full mb-4 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-
-        <input
           type="email"
           placeholder={t('register.email')}
           className="w-full mb-4 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
@@ -123,7 +112,7 @@ export default function Register() {
         <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
           {t('register.haveAccount')}{' '}
           <Link
-            to="/"
+            to="/login"
             className="text-blue-600 hover:underline font-medium"
           >
             {t('register.login')}
