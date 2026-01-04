@@ -28,6 +28,23 @@ export const translations = {
       submit: 'Iniciar sesión',
       loading: 'Ingresando…',
       error: 'Email o contraseña incorrectos',
+
+      noAccount: '¿No tienes cuenta?',
+      register: 'Regístrate',
+    },
+
+    /* ================= REGISTER ================= */
+    register: {
+      title: 'Crear cuenta',
+      name: 'Nombre',
+      email: 'Correo electrónico',
+      password: 'Contraseña',
+      submit: 'Registrarse',
+      loading: 'Creando cuenta…',
+      success: 'Cuenta creada correctamente',
+      error: 'No se pudo crear la cuenta',
+      haveAccount: '¿Ya tienes cuenta?',
+      login: 'Inicia sesión',
     },
 
     /* ================= KPIs ================= */
@@ -119,6 +136,23 @@ export const translations = {
       submit: 'Sign in',
       loading: 'Signing in…',
       error: 'Invalid email or password',
+
+      noAccount: "Don't have an account?",
+      register: 'Sign up',
+    },
+
+    /* ================= REGISTER ================= */
+    register: {
+      title: 'Create account',
+      name: 'Name',
+      email: 'Email',
+      password: 'Password',
+      submit: 'Sign up',
+      loading: 'Creating account…',
+      success: 'Account created successfully',
+      error: 'Failed to create account',
+      haveAccount: 'Already have an account?',
+      login: 'Sign in',
     },
 
     /* ================= KPIs ================= */

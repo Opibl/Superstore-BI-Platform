@@ -2,50 +2,50 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslate } from '../i18n/useTranslate'
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate()
   const { t, lang, setLang } = useTranslate()
 
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState(false)
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
     try {
       const response = await fetch(
-        'https://backend-login-deashboard.vercel.app/login',
+        'https://backend-login-deashboard.vercel.app/register',
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email, password }),
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
         }
       )
 
       if (!response.ok) {
-        throw new Error('Invalid credentials')
+        throw new Error('Register failed')
       }
 
-      const data = await response.json()
+      setSuccess(true)
 
-      // 🔐 Guardar sesión
-      localStorage.setItem('token', data.token)
-      localStorage.setItem('user', JSON.stringify(data.user))
-
-      // 🚦 Redirigir según rol
-      if (data.user.role === 'admin') {
-        navigate('/admin')
-      } else {
-        navigate('/dashboard')
-      }
+      // ⏳ Redirigir al login
+      setTimeout(() => {
+        navigate('/')
+      }, 1500)
     } catch (err) {
-      setError(t('login.error'))
+      setError(t('register.error'))
     } finally {
       setLoading(false)
     }
@@ -54,7 +54,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleRegister}
         className="relative bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg w-full max-w-md"
       >
         {/* 🌍 Language selector */}
@@ -70,7 +70,7 @@ export default function Login() {
         </div>
 
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-100">
-          {t('login.title')}
+          {t('register.title')}
         </h1>
 
         {error && (
@@ -79,9 +79,24 @@ export default function Login() {
           </div>
         )}
 
+        {success && (
+          <div className="mb-4 text-sm text-green-600 bg-green-100 dark:bg-green-900/30 p-2 rounded">
+            {t('register.success')}
+          </div>
+        )}
+
+        <input
+          type="text"
+          placeholder={t('register.name')}
+          className="w-full mb-4 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+
         <input
           type="email"
-          placeholder={t('login.email')}
+          placeholder={t('register.email')}
           className="w-full mb-4 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -90,7 +105,7 @@ export default function Login() {
 
         <input
           type="password"
-          placeholder={t('login.password')}
+          placeholder={t('register.password')}
           className="w-full mb-6 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -100,19 +115,18 @@ export default function Login() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 disabled:opacity-50"
         >
-          {loading ? t('login.loading') : t('login.submit')}
+          {loading ? t('register.loading') : t('register.submit')}
         </button>
 
-        {/* 👉 Registrarse */}
         <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
-          {t('login.noAccount')}{' '}
+          {t('register.haveAccount')}{' '}
           <Link
-            to="/registrar"
+            to="/"
             className="text-blue-600 hover:underline font-medium"
           >
-            {t('login.register')}
+            {t('register.login')}
           </Link>
         </p>
       </form>

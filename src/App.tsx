@@ -11,6 +11,7 @@ import Reportes from './components/Reportes'
 import AnalyticsDashboard from './components/AnalyticsDashboard'
 
 import { SettingsProvider } from './context/SettingsContext'
+import Registrar from './components/registrar'
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
           ====================== */}
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/registrar" element={<Registrar />} />
+
 
           {/* =====================
               USUARIO LOGUEADO
@@ -33,6 +36,7 @@ export default function App() {
                 <Dashboard />
               </PrivateRoute>
             }
+
           />
 
           <Route
