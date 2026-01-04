@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslate } from '../i18n/useTranslate'
 
@@ -105,16 +105,16 @@ export default function Login() {
           {loading ? t('login.loading') : t('login.submit')}
         </button>
 
-        {/* 👉 Registrarse */}
-        <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-300">
-          {t('login.noAccount')}{' '}
-          <Link
-            to="/registrar"
-            className="text-blue-600 hover:underline font-medium"
-          >
-            {t('login.register')}
-          </Link>
-        </p>
+        {/* ================= DEMO CREDENTIALS ================= */}
+        <div className="mt-6 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 p-3 text-center text-xs text-gray-600 dark:text-gray-300">
+          <p className="font-semibold mb-1">Demo access</p>
+          <p>
+            <span className="font-medium">Admin:</span> admin@demo.com / admin123
+          </p>
+          <p>
+            <span className="font-medium">User:</span> user@demo.com / user123
+          </p>
+        </div>
       </form>
     </div>
   )
