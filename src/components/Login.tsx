@@ -11,19 +11,36 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
+  /* ================= DEMO USER ================= */
+
+  const demoUser = {
+    email: 'user@demo.com',
+    password: 'user123',
+  }
+
+  const fillDemoUser = () => {
+    setEmail(demoUser.email)
+    setPassword(demoUser.password)
+  }
+
+  /* ================= LOGIN ================= */
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
     try {
-      const response = await fetch('https://backend-login-deashboard.vercel.app/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      })
+      const response = await fetch(
+        'https://backend-login-deashboard.vercel.app/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      )
 
       if (!response.ok) {
         throw new Error('Invalid credentials')
@@ -41,7 +58,7 @@ export default function Login() {
       } else {
         navigate('/dashboard')
       }
-    } catch (err) {
+    } catch {
       setError(t('login.error'))
     } finally {
       setLoading(false)
@@ -88,11 +105,20 @@ export default function Login() {
         <input
           type="password"
           placeholder={t('login.password')}
-          className="w-full mb-6 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          className="w-full mb-4 px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+
+        {/* 👤 DEMO USER BUTTON */}
+        <button
+          type="button"
+          onClick={fillDemoUser}
+          className="w-full mb-4 border border-dashed border-blue-500 text-blue-600 dark:text-blue-400 py-2 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-700"
+        >
+          {t('login.demo')}
+        </button>
 
         <button
           type="submit"

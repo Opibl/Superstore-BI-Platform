@@ -29,7 +29,9 @@ export const translations = {
       loading: 'Ingresando…',
       error: 'Email o contraseña incorrectos',
 
-      // 👇 NUEVO
+      // 🧪 DEMO USER
+      demo: 'Usar usuario demo',
+
       noAccount: '¿No tienes cuenta?',
       register: 'Regístrate',
     },
@@ -124,7 +126,9 @@ export const translations = {
       loading: 'Signing in…',
       error: 'Invalid email or password',
 
-      // 👇 NUEVO
+      // 🧪 DEMO USER
+      demo: 'Use demo account',
+
       noAccount: "Don't have an account?",
       register: 'Sign up',
     },
