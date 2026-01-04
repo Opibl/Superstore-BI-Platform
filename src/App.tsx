@@ -11,7 +11,7 @@ import Reportes from './components/Reportes'
 import AnalyticsDashboard from './components/AnalyticsDashboard'
 
 import { SettingsProvider } from './context/SettingsContext'
-import Registrar from './components/registrar'
+import Registrar from './components/Register'
 
 export default function App() {
   return (
