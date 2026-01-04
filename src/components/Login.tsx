@@ -17,16 +17,13 @@ export default function Login() {
     setError(null)
 
     try {
-      const response = await fetch(
-        'https://backend-login-deashboard.vercel.app/login',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      )
+      const response = await fetch('backend-login-deashboard.vercel.app/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      })
 
       if (!response.ok) {
         throw new Error('Invalid credentials')
@@ -104,17 +101,6 @@ export default function Login() {
         >
           {loading ? t('login.loading') : t('login.submit')}
         </button>
-
-        {/* ================= DEMO CREDENTIALS ================= */}
-        <div className="mt-6 rounded-lg border border-dashed border-gray-300 dark:border-gray-600 p-3 text-center text-xs text-gray-600 dark:text-gray-300">
-          <p className="font-semibold mb-1">Demo access</p>
-          <p>
-            <span className="font-medium">Admin:</span> admin@demo.com / admin123
-          </p>
-          <p>
-            <span className="font-medium">User:</span> user@demo.com / user123
-          </p>
-        </div>
       </form>
     </div>
   )
