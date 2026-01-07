@@ -1,0 +1,6 @@
+[submodule "backend"]
+	path = backend
+	url = https://github.com/Opibl/backend_fast_api.git
+[submodule "backend_login"]
+	path = backend_login
+	url = https://github.com/Opibl/backend_login_deashboard.git
