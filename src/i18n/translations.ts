@@ -2,7 +2,7 @@ export const translations = {
   es: {
     /* ================= DASHBOARD / NAV ================= */
     dashboard: {
-      title: 'Dashboard',
+      title: 'Superstore BI',
       analytics: 'Analítica',
       reports: 'Reportes',
       settings: 'Ajustes',

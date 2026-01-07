@@ -26,7 +26,7 @@ export default function Sidebar() {
   return (
     <>
       {/* Mobile top bar */}
-      <div className="md:hidden fixed top-0 left-0 right-0 z-50 h-8 flex items-center justify-between  bg-gray-900 text-white px-4">
+      <div className="md:hidden fixed top-0 left-0 right-0 z-50 h-10 flex items-center justify-between  bg-gray-900 text-white px-4">
         <span className="font-bold">{t('dashboard.title')}</span>
         <button onClick={() => setIsOpen(true)} aria-label="Open menu">
           ☰
